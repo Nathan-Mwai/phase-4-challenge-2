@@ -40,7 +40,8 @@ def getting_restaurants_by_id(id):
         return make_response(restaurant.to_dict(only=('address','id','name','restaurant_pizzas')), 200)
     
     elif request.method == "DELETE":
-        successful_response = {}
+        db.session.delete(restaurant)
+        db.session.commit()
         return make_response(successful_response, 204)
 
 
