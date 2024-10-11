@@ -42,7 +42,7 @@ def getting_restaurants_by_id(id):
     elif request.method == "DELETE":
         db.session.delete(restaurant)
         db.session.commit()
-        return make_response(successful_response, 204)
+        return make_response({}, 204)
 
 
 if __name__ == '__main__':
