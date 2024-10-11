@@ -32,11 +32,15 @@ def get_restaurants():
 @app.route('/restaurants/<int:id>', methods = ['GET', 'DELETE'])
 def getting_restaurants_by_id(id):
     restaurant = Restaurant.query.filter(Restaurant.id==id).first()
+    if not restaurant:
+        error_response = {"error": "Restaurant not found"}
+        return make_response(error_response, 404)
+    
     if request.method == "GET":
-        if not restaurant:
-            error_response = {"error": "Restaurant not found"}
-            return make_response(error_response, 404)
         return make_response(restaurant.to_dict(only=('address','id','name','restaurant_pizzas')), 200)
+    
+    # elif request.method == "DELETE":
+    #     if 
 
 
 if __name__ == '__main__':
