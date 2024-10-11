@@ -29,7 +29,7 @@ def get_restaurants():
     restaurants = [restaurant.to_dict(only=('address', 'id', 'name')) for restaurant in Restaurant.query.all()]
     return make_response(restaurants, 200)
 
-@app.route('/restaurants/<int:id>')
+@app.route('/restaurants/<int:id>', methods = ['GET', 'DELETE'])
 def getting_restaurants_by_id(id):
     restaurant = Restaurant.query.filter(Restaurant.id==id).first()
     
