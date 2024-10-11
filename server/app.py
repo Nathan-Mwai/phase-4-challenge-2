@@ -49,5 +49,8 @@ def get_pizzas():
     pizzas = [pizza.to_dict(only= ('id', 'ingredients', 'name')) for pizza in Pizza.query.all()]
     return make_response(pizzas, 200)
 
+@app.route('/restaurant_pizzas', methods=['GET', 'POST'])
+
+
 if __name__ == '__main__':
     app.run(port=5557, debug=True)
