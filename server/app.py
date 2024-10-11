@@ -29,5 +29,11 @@ def get_restaurants():
     restaurants = [restaurant.to_dict(only=('address', 'id', 'name')) for restaurant in Restaurant.query.all()]
     return make_response(restaurants, 200)
 
+@app.route('/restaurants/<int:id>')
+def getting_restaurants_by_id(id):
+    restaurant = Restaurant.query.filter(Restaurant.id==id).first()
+    return make_response(restaurant.to_dict(only=('address','id','name','restaurant_pizzas')), 200)
+
+
 if __name__ == '__main__':
     app.run(port=5557, debug=True)
