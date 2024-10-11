@@ -44,6 +44,10 @@ def getting_restaurants_by_id(id):
         db.session.commit()
         return make_response({}, 204)
 
+@app.route('/pizzas')
+def get_pizzas():
+    pizzas = [pizza.to_dict(only= ('id', 'ingredients', 'name')) for pizza in Pizza.query.all()]
+    return make_response(pizzas, 200)
 
 if __name__ == '__main__':
     app.run(port=5557, debug=True)
