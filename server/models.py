@@ -20,6 +20,7 @@ class Restaurant(db.Model, SerializerMixin):
 
     # add relationship
     restaurant_pizzas = db.relationship('RestaurantPizza', back_populates='restaurant', cascade="all, delete-orphan")
+    pizzas = association_proxy('restaurant_pizzas', 'Pizza', creator=lambda pizza_obj: RestaurantPizza(pizza=pizza_obj))
     # add serialization rules
 
     def __repr__(self):
