@@ -49,7 +49,20 @@ def get_pizzas():
     pizzas = [pizza.to_dict(only= ('id', 'ingredients', 'name')) for pizza in Pizza.query.all()]
     return make_response(pizzas, 200)
 
-@app.route('/restaurant_pizzas', methods=['GET', 'POST'])
+@app.route('/restaurant_pizzas', methods=['POST'])
+def restaurant_pizzas():
+    data = request.get_json()
+    try:
+        new_post = RestaurantPizza(
+        price=data['price'],
+        pizza_id=data['pizza_id'],
+        restaurant_id=data['restaurant_id'],
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        return make_response(new_post.to_dict(), 201)
+    except ValueError:
+            return make_response({'errors': ["validation errors"]}, 400)
 
 
 if __name__ == '__main__':
