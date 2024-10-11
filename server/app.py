@@ -24,6 +24,10 @@ db.init_app(app)
 def index():
     return '<h1>Code challenge</h1>'
 
+@app.route('/restaurants')
+def get_restaurants():
+    restaurants = [restaurant.to_dict() for restaurant in Restaurant.query.all()]
+    return make_response(restaurants, 200)
 
 if __name__ == '__main__':
     app.run(port=5557, debug=True)
