@@ -26,7 +26,7 @@ def index():
 
 @app.route('/restaurants')
 def get_restaurants():
-    restaurants = [restaurant.to_dict() for restaurant in Restaurant.query.all()]
+    restaurants = [restaurant.to_dict(only=('address', 'id', 'name')) for restaurant in Restaurant.query.all()]
     return make_response(restaurants, 200)
 
 if __name__ == '__main__':
