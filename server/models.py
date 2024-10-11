@@ -48,8 +48,10 @@ class RestaurantPizza(db.Model, SerializerMixin):
     price = db.Column(db.Integer, nullable=False)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
     pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'))
+    
     # add relationships
-
+    restaurant = db.relationship('Restaurant', back_populates="restaurant_pizzas")
+    pizza = db.relationship('Pizza', back_populates="restaurant_pizzas")
     # add serialization rules
 
     # add validation
