@@ -36,7 +36,6 @@ def getting_restaurants_by_id(id):
         if not restaurant:
             error_response = {"error": "Restaurant not found"}
             return make_response(error_response, 404)
-    
         return make_response(restaurant.to_dict(only=('address','id','name','restaurant_pizzas')), 200)
 
 
