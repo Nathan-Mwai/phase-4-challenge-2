@@ -39,8 +39,9 @@ def getting_restaurants_by_id(id):
     if request.method == "GET":
         return make_response(restaurant.to_dict(only=('address','id','name','restaurant_pizzas')), 200)
     
-    # elif request.method == "DELETE":
-    #     if 
+    elif request.method == "DELETE":
+        successful_response = {}
+        return make_response(successful_response, 204)
 
 
 if __name__ == '__main__':
